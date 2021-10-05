@@ -28,8 +28,7 @@ One file is required per Lambda entry point.
 
 ### Setup
 1. Install the version 0.11.3 version of the Lambda Tools for .Net https://github.com/aws/aws-lambda-dotnet/blob/master/Tools/LambdaTestTool/README.md
-1. Create a user environment variable called `AmazonLambdaTesttool` thats points to the root directory that the tools are installed in mine looks like `C:\Users\MYUSER\.dotnet\tools\.store`
-1. Rebuild the application to ensure it buildsCheeseSharp.Lambda.TestTool.Runner
+1. Rebuild the application to ensure it builds.
 1. From the project root run 
    i. dotnet publish -c Release -f netcoreapp3.1 -o $USERPROFILE/.dotnet/tools/.store/cheese.sharp.lambda.testtool-3.1 --self-contained true -r win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true
    i. dotnet publish -c Release -f net5.0 -o $USERPROFILE/.dotnet/tools/.store/cheese.sharp.lambda.testtool-5.0 --self-contained true -r win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true
