@@ -31,9 +31,10 @@ One file is required per Lambda entry point.
 1. Rebuild the application to ensure it builds.
 1. From the project root run for each .Net version.
 ```
-    dotnet publish -c Release -f netcoreapp3.1 -o $USERPROFILE/.dotnet/tools/.store/cheese.sharp.lambda.testtool-3.1 --self-contained true -r win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true
-
-    dotnet publish -c Release -f net5.0 -o $USERPROFILE/.dotnet/tools/.store/cheese.sharp.lambda.testtool-5.0 --self-contained true -r win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true
+dotnet publish -c Release -f netcoreapp3.1 -o $USERPROFILE/.dotnet/tools/.store/cheese.sharp.lambda.testtool-3.1 --self-contained true -r win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true
+```
+```
+dotnet publish -c Release -f net5.0 -o $USERPROFILE/.dotnet/tools/.store/cheese.sharp.lambda.testtool-5.0 --self-contained true -r win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true
 ```
 
 ### Use
