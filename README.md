@@ -29,9 +29,12 @@ One file is required per Lambda entry point.
 ### Setup
 1. Install the version 0.11.3 version of the Lambda Tools for .Net https://github.com/aws/aws-lambda-dotnet/blob/master/Tools/LambdaTestTool/README.md
 1. Rebuild the application to ensure it builds.
-1. From the project root run 
-   i. dotnet publish -c Release -f netcoreapp3.1 -o $USERPROFILE/.dotnet/tools/.store/cheese.sharp.lambda.testtool-3.1 --self-contained true -r win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true
-   i. dotnet publish -c Release -f net5.0 -o $USERPROFILE/.dotnet/tools/.store/cheese.sharp.lambda.testtool-5.0 --self-contained true -r win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true
+1. From the project root run for each .Net version.
+```
+    dotnet publish -c Release -f netcoreapp3.1 -o $USERPROFILE/.dotnet/tools/.store/cheese.sharp.lambda.testtool-3.1 --self-contained true -r win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true
+
+    dotnet publish -c Release -f net5.0 -o $USERPROFILE/.dotnet/tools/.store/cheese.sharp.lambda.testtool-5.0 --self-contained true -r win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true
+```
 
 ### Use
 The Runner works in the same way and extends the Amazon.Lambda.TestTool.
