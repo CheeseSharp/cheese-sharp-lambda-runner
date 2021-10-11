@@ -19,7 +19,7 @@ The `.json` file is a the Amazon.Lambda.TestTool with an extra setting.
       "function-memory-size": 256,
       "function-timeout": 30,
       "function-handler": "demo-lamdba::Demo.Lamdba.Function::FunctionHandler",
-      "function-trigger-resource": "test-function-runner" ## This attribute points to NAME of resource that triggers the Lambda, in this case the SQS queue name 
+      "function-trigger-resource": "sqs::test-function-runner" ## This attribute points to NAME of resource that triggers the Lambda, in this case the SQS queue name 
     }
 
 One file is required per Lambda entry point.
