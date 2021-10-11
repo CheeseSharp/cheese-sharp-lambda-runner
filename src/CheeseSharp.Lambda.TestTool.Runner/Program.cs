@@ -3,6 +3,8 @@ using System.IO;
 using Amazon;
 using Amazon.Lambda.TestTool;
 using Amazon.SQS;
+using CheeseSharp.Lambda.TestTool.Runner.Processors;
+using CheeseSharp.Lambda.TestTool.Runner.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -48,8 +50,8 @@ namespace CheeseSharp.Lambda.TestTool.Runner
                     {
                         var builder = new LambdaOptionsBuilder();
                         return builder.BuildLambdaOptions(
-                            "AWS .NET Core 3.1 Mock Lambda Test Tool", 
-                            commandOptions, 
+                            "AWS .NET Mock Lambda Test Tool",
+                            commandOptions,
                             new TestToolStartup.RunConfiguration());
                     });
 
@@ -59,7 +61,12 @@ namespace CheeseSharp.Lambda.TestTool.Runner
                         return builder.BuildLambdaTriggerMaps(c.GetService<LocalLambdaOptions>());
                     });
 
-                    services.AddHostedService<SQSProcessor>();
+                    services.AddSingleton<IProcessLambda, ProcessLambda>();
+                    services.AddSingleton<IProcessCronToTrigger, ProcessCronToTrigger>();
+                    services.AddSingleton<IProcessTime>(c => new DefaultProcessTime(15));
+                    services.AddHostedService<SQSService>();
+                    services.AddHostedService<CronService>();
+                    services.AddHostedService<SimpleService>();
                 });
     }
 }

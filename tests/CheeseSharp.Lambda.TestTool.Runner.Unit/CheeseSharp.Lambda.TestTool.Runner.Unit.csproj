@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Amazon.Lambda.TestUtilities" Version="2.0.0" />
+    <PackageReference Include="FluentAssertions" Version="6.1.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.19" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.19" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.19" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.19" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="Moq" Version="4.16.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\CheeseSharp.Lambda.TestTool.Runner\CheeseSharp.Lambda.TestTool.Runner.csproj" />
+    <ProjectReference Include="..\CheeseSharp.Lambda.TestTool.Runner.ExampleFunctions\CheeseSharp.Lambda.TestTool.Runner.ExampleFunctions.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Amazon.Lambda.TestTool">
+      <HintPath>$(USERPROFILE)\.dotnet\tools\.store\amazon.lambda.testtool-3.1\0.11.3\amazon.lambda.testtool-3.1\0.11.3\tools\netcoreapp3.1\any\Amazon.Lambda.TestTool.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Config-Simple.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Config-Cron.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Config-SQS.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+</Project>

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheeseSharp.Lambda.TestTool.Runner", "src\Amazon.Lambda.TestTool.Runner\CheeseSharp.Lambda.TestTool.Runner.csproj", "{BC882C64-7AC5-45BE-94BD-0EBA85BA39F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheeseSharp.Lambda.TestTool.Runner", "src\CheeseSharp.Lambda.TestTool.Runner\CheeseSharp.Lambda.TestTool.Runner.csproj", "{BC882C64-7AC5-45BE-94BD-0EBA85BA39F0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{6343B85A-A382-4497-B4ED-3C6E2B024B63}"
 	ProjectSection(SolutionItems) = preProject
@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution 
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheeseSharp.Lambda.TestTool.Runner.Unit", "tests\CheeseSharp.Lambda.TestTool.Runner.Unit\CheeseSharp.Lambda.TestTool.Runner.Unit.csproj", "{61AFC225-FF82-4397-B15A-2440613D2F15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheeseSharp.Lambda.TestTool.Runner.ExampleFunctions", "tests\CheeseSharp.Lambda.TestTool.Runner.ExampleFunctions\CheeseSharp.Lambda.TestTool.Runner.ExampleFunctions.csproj", "{EFBF1257-FDFD-4681-A17A-F385BD82B4B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,6 +26,14 @@ Global
 		{BC882C64-7AC5-45BE-94BD-0EBA85BA39F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC882C64-7AC5-45BE-94BD-0EBA85BA39F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC882C64-7AC5-45BE-94BD-0EBA85BA39F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61AFC225-FF82-4397-B15A-2440613D2F15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61AFC225-FF82-4397-B15A-2440613D2F15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61AFC225-FF82-4397-B15A-2440613D2F15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61AFC225-FF82-4397-B15A-2440613D2F15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFBF1257-FDFD-4681-A17A-F385BD82B4B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFBF1257-FDFD-4681-A17A-F385BD82B4B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFBF1257-FDFD-4681-A17A-F385BD82B4B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFBF1257-FDFD-4681-A17A-F385BD82B4B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -30,8 +30,13 @@ namespace CheeseSharp.Lambda.TestTool.Runner
 
             var items = lambdaTriggerMapConfigFiles
                 .GroupBy(fi => fi.FunctionTriggerResource)
-                .Select(gp => new LambdaTriggerMap(gp.Key, gp.Select(i =>
-                                                       new LambdaTriggerTarget(i.FunctionHandler, i.ConfigFileLocation))));
+                .Select(gp =>
+                {
+                    var functionTriggerResource = gp.Key.Split("::");
+                    return new LambdaTriggerMap(
+                        new LambdaTriggerMapFunctionResource(functionTriggerResource[1], functionTriggerResource[0]), 
+                        gp.Select(i => new LambdaTriggerTarget(i.FunctionHandler, i.ConfigFileLocation)));
+                });
 
             return new LambdaTriggerMaps(items);
         }

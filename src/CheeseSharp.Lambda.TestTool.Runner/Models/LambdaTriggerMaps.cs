@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CheeseSharp.Lambda.TestTool.Runner.Models
@@ -13,5 +14,8 @@ namespace CheeseSharp.Lambda.TestTool.Runner.Models
         }
 
         public IReadOnlyList<LambdaTriggerMap> Maps { get; }
+
+        public IReadOnlyList<LambdaTriggerMap> FindByTriggerType(TriggerType triggerType) 
+            => this.Maps.Where(i => i.FunctionResource.FunctionResorceType.Equals(triggerType)).ToList();
     }
 }

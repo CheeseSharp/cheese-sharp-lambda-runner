@@ -6,11 +6,11 @@ namespace CheeseSharp.Lambda.TestTool.Runner.Models
     public class LambdaTriggerMap
     {
         public LambdaTriggerMap(
-            string functionResorce, 
+            LambdaTriggerMapFunctionResource functionResorce, 
             IEnumerable<LambdaTriggerTarget> lambdaTriggerTargets)
         {
             FunctionResource = 
-                Invariants.IsNotNullAndNotEmptyElseThrow(
+                Invariants.IsNotNullElseThrow(
                     functionResorce, 
                     $"{nameof(LambdaTriggerMap)} - {nameof(functionResorce)}");
             LambdaTriggerTargets = 
@@ -19,7 +19,7 @@ namespace CheeseSharp.Lambda.TestTool.Runner.Models
                     $"{nameof(LambdaTriggerMap)} - {nameof(lambdaTriggerTargets)}").ToList();
         }
 
-        public string FunctionResource { get; }
+        public LambdaTriggerMapFunctionResource FunctionResource { get; }
 
         public IReadOnlyList<LambdaTriggerTarget> LambdaTriggerTargets { get;  }
     }

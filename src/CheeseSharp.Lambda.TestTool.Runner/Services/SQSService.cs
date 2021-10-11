@@ -8,29 +8,30 @@ using Amazon.Lambda.TestTool.Runtime;
 using Amazon.SQS;
 using Amazon.SQS.Model;
 using CheeseSharp.Lambda.TestTool.Runner.Models;
+using CheeseSharp.Lambda.TestTool.Runner.Processors;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using static CheeseSharp.Lambda.TestTool.Runner.Models.SQSEvent;
 
-namespace CheeseSharp.Lambda.TestTool.Runner
+namespace CheeseSharp.Lambda.TestTool.Runner.Services
 {
-    public class SQSProcessor : BackgroundService
+    public class SQSService : BackgroundService
     {
-        private readonly ILogger<SQSProcessor> logger;
+        private readonly ILogger<SQSService> logger;
         private readonly IAmazonSQS sqs;
-        private readonly LocalLambdaOptions localLambdaOptions;
+        private readonly IProcessLambda processLambda;
         private readonly LambdaTriggerMaps lambdaTriggerMaps;
 
-        public SQSProcessor(
-            ILogger<SQSProcessor> logger, 
-            IAmazonSQS sqs, 
-            LocalLambdaOptions localLambdaOptions,
+        public SQSService(
+            ILogger<SQSService> logger, 
+            IAmazonSQS sqs,
+            IProcessLambda processLambda,
             LambdaTriggerMaps lambdaTriggerMaps)
         {
             this.logger = logger;
             this.sqs = sqs;
-            this.localLambdaOptions = localLambdaOptions;
+            this.processLambda = processLambda;
             this.lambdaTriggerMaps = lambdaTriggerMaps;
         }
 
@@ -40,9 +41,13 @@ namespace CheeseSharp.Lambda.TestTool.Runner
             {
                 try
                 {
-                    foreach (var lambdaTriggerMap in this.lambdaTriggerMaps.Maps)
+                    var maps = this.lambdaTriggerMaps.FindByTriggerType(TriggerType.sqs);
+
+                    logger.LogInformation($"Trigger Maps Found for {TriggerType.sqs} Found: {string.Join(",", maps.Select(m => m.FunctionResource.FunctionResource))}");
+
+                    foreach (var lambdaTriggerMap in maps)
                     {
-                        var queueUrl = await sqs.GetQueueUrlAsync(lambdaTriggerMap.FunctionResource, stoppingToken);
+                        var queueUrl = await sqs.GetQueueUrlAsync(lambdaTriggerMap.FunctionResource.FunctionResource, stoppingToken);
                         var queueArn = await sqs.GetQueueAttributesAsync(queueUrl.QueueUrl, new List<string> { "QueueArn" });
                         var request = new ReceiveMessageRequest
                         {
@@ -51,39 +56,26 @@ namespace CheeseSharp.Lambda.TestTool.Runner
                             WaitTimeSeconds = 5
                         };
 
-                        var result = await sqs.ReceiveMessageAsync(request);
+                        var result = await sqs.ReceiveMessageAsync(request, stoppingToken);
                         if (result.Messages.Any())
                         {
                             logger.LogInformation($"Messages received {result.Messages.Count}");
 
                             var sqsEventJson = JsonConvert.SerializeObject(
-                                this.MapToSQSEvent(result, lambdaTriggerMap.FunctionResource));
+                                this.MapToSQSEvent(result, lambdaTriggerMap.FunctionResource.FunctionResource));
+
+                            var executionRequest = new ExecutionRequest()
+                            {
+                                AWSProfile = "default",
+                                AWSRegion = sqs.Config.RegionEndpoint.SystemName,
+                                Payload = sqsEventJson
+                            };
 
                             var responses = new List<ExecutionResponse>();
 
-                            foreach (var triggers in lambdaTriggerMap.LambdaTriggerTargets)
-                            {
-                                var function = localLambdaOptions.LoadLambdaFuntion(
-                               triggers.ConfigFileLocation,
-                               triggers.FunctionHandler);
-
-                                var executionRequest = new ExecutionRequest()
-                                {
-                                    Function = function,
-                                    AWSProfile = "default",
-                                    AWSRegion = sqs.Config.RegionEndpoint.SystemName,
-                                    Payload = sqsEventJson
-                                };
-
-                                var response = 
-                                    await localLambdaOptions.LambdaRuntime.ExecuteLambdaFunctionAsync(executionRequest);
-                                responses.Add(response);
-
-                                if (!response.IsSuccess)
-                                {
-                                    logger.LogError(
-                                        $"Function {triggers.FunctionHandler} responded with error {response.Error}");
-                                }
+                            foreach (var trigger in lambdaTriggerMap.LambdaTriggerTargets)
+                            {   
+                                responses.Add(await this.processLambda.FindFunctionAndExec(executionRequest, trigger));
                             }                        
 
                             if(responses.All(r => r.IsSuccess))
