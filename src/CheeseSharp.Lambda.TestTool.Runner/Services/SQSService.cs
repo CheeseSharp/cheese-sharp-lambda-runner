@@ -97,7 +97,6 @@ namespace CheeseSharp.Lambda.TestTool.Runner.Services
                             }                           
                         }
                     }
-                    await Task.Delay(100);
                 }
                 catch (Exception e)
                 {
@@ -106,6 +105,10 @@ namespace CheeseSharp.Lambda.TestTool.Runner.Services
                     {
                         logger.LogError(e.InnerException.ToString());
                     }                    
+                }
+                finally
+                {
+                    await Task.Delay(1000);
                 }
 
                 logger.LogInformation($"Worker running at: {DateTimeOffset.Now}");

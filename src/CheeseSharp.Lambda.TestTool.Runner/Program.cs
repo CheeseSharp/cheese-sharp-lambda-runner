@@ -64,9 +64,9 @@ namespace CheeseSharp.Lambda.TestTool.Runner
                     services.AddSingleton<IProcessLambda, ProcessLambda>();
                     services.AddSingleton<IProcessCronToTrigger, ProcessCronToTrigger>();
                     services.AddSingleton<IProcessTime>(c => new DefaultProcessTime(15));
-                    services.AddHostedService<SQSService>();
-                    services.AddHostedService<CronService>();
                     services.AddHostedService<SimpleService>();
+                    services.AddHostedService<CronService>();
+                    services.AddHostedService<SQSService>();
                 });
     }
 }

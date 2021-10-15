@@ -34,6 +34,16 @@ namespace CheeseSharp.Lambda.TestTool.Runner.Services
             this.lambdaTriggerMaps = lambdaTriggerMaps;
         }
 
+        //protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        //{
+        //    Task.Run(async () =>
+        //    {
+        //        await this.TaskRun(stoppingToken);
+        //    }, stoppingToken);
+
+        //    return Task.CompletedTask;
+        //}
+
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             var baseTime = this.processTime.GetCurrentUtcTime();
@@ -62,7 +72,6 @@ namespace CheeseSharp.Lambda.TestTool.Runner.Services
                     {
                         currentTime = this.processTime.GetCurrentUtcTime();
                     }
-                    await Task.Delay(100);
                 }
                 catch (Exception e)
                 {
@@ -71,6 +80,10 @@ namespace CheeseSharp.Lambda.TestTool.Runner.Services
                     {
                         logger.LogError(e.InnerException.ToString());
                     }
+                }
+                finally
+                {
+                    await Task.Delay(250);
                 }
 
                 logger.LogInformation($"Worker running at: {DateTimeOffset.Now}");
