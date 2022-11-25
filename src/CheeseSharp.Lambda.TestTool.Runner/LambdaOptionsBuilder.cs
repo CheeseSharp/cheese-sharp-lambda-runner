@@ -58,6 +58,8 @@ namespace CheeseSharp.Lambda.TestTool.Runner
             var targetFramework = "netcoreapp3.1";
 #elif NET5_0
                 var targetFramework = "net5.0";
+#elif NET6_0
+                var targetFramework = "net6.0";
 #endif
 
             // Check to see if running in debug mode from this project's directory which means the test tool is being debugged.
