@@ -31,7 +31,7 @@ One file is required per Lambda entry point.
 1. Rebuild the application to ensure it builds.
 1. From the project root (/src/CheeseSharp.Lambda.TestTool.Runner) run for each .Net version.
 
-**Powershell**
+**CMD [Admin command shell]**
 ```
 dotnet publish -c Release -f netcoreapp3.1 -o %USERPROFILE%/.dotnet/tools/.store/cheese.sharp.lambda.testtool-3.1 --self-contained true -r win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true
 ```
@@ -59,12 +59,12 @@ dotnet publish -c Release -f net6.0 -o %USERPROFILE%/.dotnet/tools/.store/cheese
    </Reference>
   </ItemGroup>
 
-  	<ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
-		<Reference Include="Amazon.Lambda.TestTool">
-			<HintPath>$(USERPROFILE)\.dotnet\tools\.store\amazon.lambda.testtool-6.0\0.12.7\amazon.lambda.testtool-6.0\0.12.7\tools\net6.0\any\Amazon.Lambda.TestTool.dll</HintPath>
-		</Reference>
-	</ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
+	<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+	 <Reference Include="Amazon.Lambda.TestTool">
+		<HintPath>$(USERPROFILE)\.dotnet\tools\.store\amazon.lambda.testtool-6.0\0.12.7\amazon.lambda.testtool-6.0\0.12.7\tools\net6.0\any\Amazon.Lambda.TestTool.dll</HintPath>
+	 </Reference>
+  </ItemGroup>
 ```
 
 ### Use
@@ -100,6 +100,17 @@ The Runner works in the same way and extends the Amazon.Lambda.TestTool.
             }
           }
         }
+    net6.0
+        {
+          "profiles": {
+            "Mock Lambda Test Tool": {
+              "commandName": "Executable",
+              "executablePath": "%USERPROFILE%\\.dotnet\\tools\\dotnet-lambda-test-tool-6.0.exe",
+              "commandLineArgs": "--port 5050 --profile default", ## Set to the AWS credentials profile used on your developer machine 
+              "workingDirectory": ".\\bin\\$(Configuration)\\net6.0"
+            }
+          }
+        }
 
 
 **To**
@@ -127,7 +138,17 @@ The Runner works in the same way and extends the Amazon.Lambda.TestTool.
             }
           }
         }
-
+    net6.0
+        {
+          "profiles": {
+            "Mock Lambda Test Tool": {
+              "commandName": "Executable",
+              "executablePath": "%USERPROFILE%\\.dotnet\\tools\\.store\\cheese.sharp.lambda.testtool-6.0\\CheeseSharp.Lambda.TestTool.Runner.exe",
+              "commandLineArgs": "--port 5050 --profile default", ## Set to the AWS credentials profile used on your developer machine 
+              "workingDirectory": ".\\bin\\$(Configuration)\\net6.0"
+            }
+          }
+        }
 
 
  
