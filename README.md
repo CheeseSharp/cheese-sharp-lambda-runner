@@ -100,6 +100,7 @@ The Runner works in the same way and extends the Amazon.Lambda.TestTool.
             }
           }
         }
+
     net6.0
         {
           "profiles": {
@@ -138,6 +139,7 @@ The Runner works in the same way and extends the Amazon.Lambda.TestTool.
             }
           }
         }
+
     net6.0
         {
           "profiles": {
@@ -149,7 +151,3 @@ The Runner works in the same way and extends the Amazon.Lambda.TestTool.
             }
           }
         }
-
-
- 
-
