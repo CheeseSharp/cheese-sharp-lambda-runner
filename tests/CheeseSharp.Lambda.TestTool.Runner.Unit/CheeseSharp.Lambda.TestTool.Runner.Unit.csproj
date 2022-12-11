@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Amazon.Lambda.TestUtilities" Version="2.0.0" />
     <PackageReference Include="FluentAssertions" Version="6.8.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.31" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.31" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.31" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.31" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.4.0" />
-    <PackageReference Include="Moq" Version="4.18.2" />
+    <PackageReference Include="Moq" Version="4.18.3" />
     <PackageReference Include="xunit" Version="2.4.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
       <PrivateAssets>all</PrivateAssets>
@@ -23,8 +23,8 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Amazon.Lambda.TestTool">
-      <HintPath>$(USERPROFILE)\.dotnet\tools\.store\amazon.lambda.testtool-3.1\0.12.7\amazon.lambda.testtool-3.1\0.12.7\tools\netcoreapp3.1\any\Amazon.Lambda.TestTool.dll</HintPath>
-    </Reference>
+		<HintPath>$(USERPROFILE)\.dotnet\tools\.store\amazon.lambda.testtool-6.0\0.12.7\amazon.lambda.testtool-6.0\0.12.7\tools\net6.0\any\Amazon.Lambda.TestTool.dll</HintPath>
+	</Reference>
   </ItemGroup>
   <ItemGroup>
     <None Update="Config-Simple.json">

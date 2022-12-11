@@ -10,7 +10,7 @@
 		<PackageTags>AWS;Amazon;Lambda</PackageTags>
 		<NoWarn>1701;1702;1591;1587;3021;NU5100;CS1591</NoWarn>
 		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
-		<TargetFrameworks>netcoreapp3.1;net5.0</TargetFrameworks>
+		<TargetFrameworks>netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -37,12 +37,12 @@
 		</Reference>
 	</ItemGroup>
 
-	<!--<ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
 		<Reference Include="Amazon.Lambda.TestTool">
-			<HintPath>$(USERPROFILE)\.dotnet\tools\.store\amazon.lambda.testtool-6.0\0.12.7\amazon.lambda.testtool-5.0\0.12.7\tools\net6.0\any\Amazon.Lambda.TestTool.dll</HintPath>
+			<HintPath>$(USERPROFILE)\.dotnet\tools\.store\amazon.lambda.testtool-6.0\0.12.7\amazon.lambda.testtool-6.0\0.12.7\tools\net6.0\any\Amazon.Lambda.TestTool.dll</HintPath>
 		</Reference>
-	</ItemGroup>-->
+	</ItemGroup>
 
 	<ItemGroup>
 		<Folder Include="Properties\" />
@@ -54,6 +54,10 @@
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'PackNET50' ">
 		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'PackNET60' ">
+		<TargetFramework>net6.0</TargetFramework>
 	</PropertyGroup>
 
 </Project>
