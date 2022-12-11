@@ -27,7 +27,7 @@ One file is required per Lambda entry point.
 >**NOTE:** AWS Lambda only supports net5.0 via a container entry point. This application is designed for testing, for deployment you will need to packed a net5.0 Lambda into a container. 
 
 ### Setup
-1. Install the version 0.11.4 version of the AWS Lambda Tools for .Net https://github.com/aws/aws-lambda-dotnet/blob/master/Tools/LambdaTestTool/README.md 
+1. Install the version 0.12.7 version of the AWS Lambda Tools for .Net https://github.com/aws/aws-lambda-dotnet/blob/master/Tools/LambdaTestTool/README.md 
 1. Rebuild the application to ensure it builds.
 1. From the project root (/src/CheeseSharp.Lambda.TestTool.Runner) run for each .Net version.
 
@@ -48,14 +48,14 @@ dotnet publish -c Release -f net6.0 -o %USERPROFILE%/.dotnet/tools/.store/cheese
 <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1' ">
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.19" />
     <Reference Include="Amazon.Lambda.TestTool">
-      <HintPath>$(USERPROFILE)\.dotnet\tools\.store\amazon.lambda.testtool-3.1\0.11.4\amazon.lambda.testtool-3.1\0.11.4\tools\netcoreapp3.1\any\Amazon.Lambda.TestTool.dll</HintPath>
+      <HintPath>$(USERPROFILE)\.dotnet\tools\.store\amazon.lambda.testtool-3.1\0.12.7\amazon.lambda.testtool-3.1\0.12.7\tools\netcoreapp3.1\any\Amazon.Lambda.TestTool.dll</HintPath>
     </Reference>
   </ItemGroup>
   
   <ItemGroup Condition=" '$(TargetFramework)' == 'net5.0' ">
    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
 	 <Reference Include="Amazon.Lambda.TestTool">
-      <HintPath>$(USERPROFILE)\.dotnet\tools\.store\amazon.lambda.testtool-5.0\0.11.4\amazon.lambda.testtool-5.0\0.11.4\tools\net5.0\any\Amazon.Lambda.TestTool.dll</HintPath>
+      <HintPath>$(USERPROFILE)\.dotnet\tools\.store\amazon.lambda.testtool-5.0\0.12.7\amazon.lambda.testtool-5.0\0.12.7\tools\net5.0\any\Amazon.Lambda.TestTool.dll</HintPath>
    </Reference>
   </ItemGroup>
 
