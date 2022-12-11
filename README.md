@@ -38,6 +38,10 @@ dotnet publish -c Release -f netcoreapp3.1 -o %USERPROFILE%/.dotnet/tools/.store
 ```
 dotnet publish -c Release -f net5.0 -o %USERPROFILE%/.dotnet/tools/.store/cheese.sharp.lambda.testtool-5.0 --self-contained true -r win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true
 ```
+```
+dotnet publish -c Release -f net6.0 -o %USERPROFILE%/.dotnet/tools/.store/cheese.sharp.lambda.testtool-6.0 --self-contained true -r win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true
+```
+
 >**NOTE:** if you install a later version of the AWS Lambda tools you will need to update the ```csproj``` files with the new path to the to ```Amazon.Lambda.TestTool.dll```
 
 ```
@@ -54,6 +58,13 @@ dotnet publish -c Release -f net5.0 -o %USERPROFILE%/.dotnet/tools/.store/cheese
       <HintPath>$(USERPROFILE)\.dotnet\tools\.store\amazon.lambda.testtool-5.0\0.11.4\amazon.lambda.testtool-5.0\0.11.4\tools\net5.0\any\Amazon.Lambda.TestTool.dll</HintPath>
    </Reference>
   </ItemGroup>
+
+  	<ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+		<Reference Include="Amazon.Lambda.TestTool">
+			<HintPath>$(USERPROFILE)\.dotnet\tools\.store\amazon.lambda.testtool-6.0\0.12.7\amazon.lambda.testtool-6.0\0.12.7\tools\net6.0\any\Amazon.Lambda.TestTool.dll</HintPath>
+		</Reference>
+	</ItemGroup>
 ```
 
 ### Use
