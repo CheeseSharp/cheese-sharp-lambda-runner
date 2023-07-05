@@ -4,7 +4,7 @@
 		<OutputType>Exe</OutputType>
 		<Description>A tool to help debug and RUN your .NET Core AWS Lambda functions locally.</Description>
 		<LangVersion>Latest</LangVersion>
-		<VersionPrefix>0.11.3</VersionPrefix>
+		<VersionPrefix>0.13.1</VersionPrefix>
 		<Product>Extension to AWS .NET Lambda Test Tool</Product>
 		<Copyright>MIT</Copyright>
 		<PackageTags>AWS;Amazon;Lambda</PackageTags>
@@ -14,33 +14,34 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="AWSSDK.Core" Version="3.7.100.22" />
-		<PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.7.2" />
-		<PackageReference Include="AWSSDK.SQS" Version="3.7.100.22" />
-		<PackageReference Include="AWSSDK.Securitytoken" Version="3.7.100.22" />
-		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+		<PackageReference Include="AWSSDK.SecurityToken" Version="3.7.103.15" />
+		<PackageReference Include="AWSSDK.SSO" Version="3.7.100.146" />
+		<PackageReference Include="AWSSDK.SSOOIDC" Version="3.7.100.146" />
+		<PackageReference Include="AWSSDK.Core" Version="3.7.107.10" />
+		<PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.7.7" />
+		<PackageReference Include="AWSSDK.SQS" Version="3.7.103.6" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="ncrontab" Version="3.3.1" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1' ">
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.31" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.*" />
 		<Reference Include="Amazon.Lambda.TestTool">
-			<HintPath>$(USERPROFILE)\.dotnet\tools\.store\amazon.lambda.testtool-3.1\0.12.7\amazon.lambda.testtool-3.1\0.12.7\tools\netcoreapp3.1\any\Amazon.Lambda.TestTool.dll</HintPath>
+			<HintPath>$([System.Environment]::GetFolderPath(SpecialFolder.UserProfile))\.dotnet\tools\.store\amazon.lambda.testtool-3.1\0.13.1\amazon.lambda.testtool-3.1\0.13.1\tools\netcoreapp3.1\any\Amazon.Lambda.TestTool.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net5.0' ">
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.*" />
 		<Reference Include="Amazon.Lambda.TestTool">
-			<HintPath>$(USERPROFILE)\.dotnet\tools\.store\amazon.lambda.testtool-5.0\0.12.7\amazon.lambda.testtool-5.0\0.12.7\tools\net5.0\any\Amazon.Lambda.TestTool.dll</HintPath>
+			<HintPath>$([System.Environment]::GetFolderPath(SpecialFolder.UserProfile))\.dotnet\tools\.store\amazon.lambda.testtool-5.0\0.13.1\amazon.lambda.testtool-5.0\0.13.1\tools\net5.0\any\Amazon.Lambda.TestTool.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.*" />
 		<Reference Include="Amazon.Lambda.TestTool">
-			<HintPath>$(USERPROFILE)\.dotnet\tools\.store\amazon.lambda.testtool-6.0\0.12.7\amazon.lambda.testtool-6.0\0.12.7\tools\net6.0\any\Amazon.Lambda.TestTool.dll</HintPath>
+			<HintPath>$([System.Environment]::GetFolderPath(SpecialFolder.UserProfile))\.dotnet\tools\.store\amazon.lambda.testtool-6.0\0.13.1\amazon.lambda.testtool-6.0\0.13.1\tools\net6.0\any\Amazon.Lambda.TestTool.dll</HintPath>
 		</Reference>
 	</ItemGroup>
 
