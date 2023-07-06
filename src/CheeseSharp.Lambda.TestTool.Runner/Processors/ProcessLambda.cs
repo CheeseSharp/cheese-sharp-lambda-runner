@@ -2,6 +2,7 @@
 using Amazon.Lambda.TestTool.Runtime;
 using CheeseSharp.Lambda.TestTool.Runner.Models;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Threading.Tasks;
 
 namespace CheeseSharp.Lambda.TestTool.Runner.Processors
@@ -15,6 +16,11 @@ namespace CheeseSharp.Lambda.TestTool.Runner.Processors
            ILogger<ProcessLambda> logger,
            LocalLambdaOptions localLambdaOptions)
         {
+            if (localLambdaOptions == null)
+            {
+                throw new ArgumentNullException(nameof(localLambdaOptions));
+            }
+
             this.logger = logger;
             this.localLambdaOptions = localLambdaOptions;
         }
@@ -24,7 +30,12 @@ namespace CheeseSharp.Lambda.TestTool.Runner.Processors
 
         public async Task<ExecutionResponse> FindFunctionAndExec(ExecutionRequest request, LambdaTriggerTarget trigger)
         {
-            logger.LogDebug($"Start Function {trigger.FunctionHandler}");
+            if (trigger == null)
+            {
+                throw new ArgumentNullException(nameof(trigger));
+            }
+
+            logger.LogInformation($"Start Function {trigger.FunctionHandler}");
 
             var function = localLambdaOptions.LoadLambdaFuntion(
                                trigger.ConfigFileLocation,
