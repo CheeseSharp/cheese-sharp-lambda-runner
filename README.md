@@ -42,13 +42,13 @@ dotnet publish -c Release -f net6.0 -o %USERPROFILE%/.dotnet/tools/.store/cheese
 
 **CMD [Admin command [WSL / MAC / LINUX] bash shell]**
 ```
-dotnet publish -c Release -f netcoreapp3.1 -o $HOMR/.dotnet/tools/.store/cheese.sharp.lambda.testtool-3.1 --self-contained true -r win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true
+dotnet publish -c Release -f netcoreapp3.1 -o $HOME/.dotnet/tools/.store/cheese.sharp.lambda.testtool-3.1 --self-contained true -r win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true
 ```
 ```
-dotnet publish -c Release -f net5.0 -o $HOMR/.dotnet/tools/.store/cheese.sharp.lambda.testtool-5.0 --self-contained true -r win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true
+dotnet publish -c Release -f net5.0 -o $HOME/.dotnet/tools/.store/cheese.sharp.lambda.testtool-5.0 --self-contained true -r win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true
 ```
 ```
-dotnet publish -c Release -f net6.0 -o $HOMR/.dotnet/tools/.store/cheese.sharp.lambda.testtool-6.0 --self-contained true -r win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true
+dotnet publish -c Release -f net6.0 -o $HOME/.dotnet/tools/.store/cheese.sharp.lambda.testtool-6.0 --self-contained true -r win-x64 -p:PublishReadyToRun=true -p:PublishSingleFile=true
 ```
 
 >**NOTE:** if you install a later version of the AWS Lambda tools you will need to update the ```csproj``` files with the new path to the to ```Amazon.Lambda.TestTool.dll```

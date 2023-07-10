@@ -53,7 +53,8 @@ namespace CheeseSharp.Lambda.TestTool.Runner.Services
                         {
                             QueueUrl = queueUrl.QueueUrl,
                             MaxNumberOfMessages = 10,
-                            WaitTimeSeconds = 5
+                            WaitTimeSeconds = 5,
+                            VisibilityTimeout = 5
                         };
 
                         var result = await sqs.ReceiveMessageAsync(request, stoppingToken);
@@ -66,7 +67,6 @@ namespace CheeseSharp.Lambda.TestTool.Runner.Services
 
                             var executionRequest = new ExecutionRequest()
                             {
-                                AWSProfile = "default",
                                 AWSRegion = sqs.Config.RegionEndpoint.SystemName,
                                 Payload = sqsEventJson
                             };

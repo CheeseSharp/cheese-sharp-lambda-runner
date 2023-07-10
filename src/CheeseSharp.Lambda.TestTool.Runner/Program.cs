@@ -2,6 +2,7 @@
 using System.IO;
 using Amazon;
 using Amazon.Lambda.TestTool;
+using Amazon.Runtime.CredentialManagement;
 using Amazon.SQS;
 using CheeseSharp.Lambda.TestTool.Runner.Processors;
 using CheeseSharp.Lambda.TestTool.Runner.Services;
@@ -42,6 +43,17 @@ namespace CheeseSharp.Lambda.TestTool.Runner
                     if (!string.IsNullOrEmpty(commandOptions.AWSProfile))
                     {
                         options.Profile = commandOptions.AWSProfile;
+                    }
+
+                    var chain = new CredentialProfileStoreChain();
+                    if (chain.TryGetAWSCredentials(options.Profile, out var credentials))
+                    {
+                        options.Credentials = credentials;
+                    }
+
+                    if (options.Region == null && chain.TryGetProfile(options.Profile, out var credentialProfile))
+                    {
+                        options.Region = credentialProfile.Region ?? null;
                     }
 
                     services.AddDefaultAWSOptions(options);
