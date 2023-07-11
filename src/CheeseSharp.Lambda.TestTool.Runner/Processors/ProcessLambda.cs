@@ -52,6 +52,24 @@ namespace CheeseSharp.Lambda.TestTool.Runner.Processors
                 logger.LogError(
                     $"Function {trigger.FunctionHandler} responded with error {response.Error}");
             }
+            else
+            {
+                if (!string.IsNullOrEmpty(response.Logs) && response.Logs.Contains("[Warning]"))
+                {
+                    logger.LogWarning(
+                        $"Function {trigger.FunctionHandler} responded with Warning {response.Logs}");
+                }
+                else if (!string.IsNullOrEmpty(response.Logs) && response.Logs.Contains("[Warning]"))
+                {
+                    logger.LogError(
+                        $"Function {trigger.FunctionHandler} responded with Error {response.Logs}");
+                }
+                else
+                {
+                    logger.LogInformation(
+                        $"Function {trigger.FunctionHandler} responded with Info {response.Logs}");
+                }
+            }
 
             return response;
         }
